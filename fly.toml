@@ -1,0 +1,22 @@
+# fly.toml app configuration file generated for faster-whisper on 2023-11-01T17:12:17-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "faster-whisper"
+primary_region = "ord"
+
+[build]
+  image = "onerahmet/openai-whisper-asr-webservice:latest-gpu"
+
+[env]
+  ASR_ENGINE = "faster_whisper"
+  ASR_MODEL = "large"
+
+[[mounts]]
+  source = "data"
+  destination = "/root/.cache/whisper"
+
+[http_service]
+  internal_port = 9000
+  force_https = true
